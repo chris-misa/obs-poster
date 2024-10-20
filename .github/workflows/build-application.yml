@@ -16,6 +16,8 @@ jobs:
   build-windows:
 
     runs-on: windows-2022
+    permissions:
+      actions: write
 
     steps:
     - name: Checkout
