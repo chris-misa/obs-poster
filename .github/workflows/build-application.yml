@@ -28,7 +28,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Windows_OBSPoster
+        name: OBSPoster_Windows
         path: dist/OBSPoster.exe
 
   macos:
@@ -50,7 +50,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: MACOS_OBSPoster
+        name: OBSPoster_MacOS
         path: dist/OBSPoster.app
 
   release:
@@ -65,5 +65,5 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: |
-          windows/dist/OBSPoster.exe
-          macos/dist/OBSPoster.exe
+          OBSPoster_Windows
+          OBSPoster_MacOS
