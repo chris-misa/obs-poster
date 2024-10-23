@@ -47,11 +47,16 @@ jobs:
     - name: Run PyInstaller
       run: |
         python -m PyInstaller --name="OBSPoster" --windowed --onefile --icon=icon.ico app.py
+    - name: Add a layer of dir
+      run: |
+        mkdir OBSPoster_MacOS
+        mv dist/OBSPoster.app OBSPoster_MacOS/
+        ls -R OBSPoster_MacOS
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: OBSPoster_MacOS
-        path: dist/OBSPoster.app
+        path: OBSPoster_MacOS
 
   release:
     runs-on: ubuntu-latest
