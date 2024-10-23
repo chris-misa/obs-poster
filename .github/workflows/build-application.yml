@@ -31,8 +31,8 @@ jobs:
         name: OBSPoster_Windows
         path: dist/OBSPoster.exe
 
-  macos:
-    runs-on: macos-12
+  macos-intel:
+    runs-on: macos-13
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -50,17 +50,17 @@ jobs:
     - name: Add a layer of dir
       run: |
         cd dist
-        zip -r OBSPoster.zip OBSPoster.app
+        zip -r OBSPoster_MacOSIntel.zip OBSPoster.app
         cd -
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: OBSPoster_MacOS
-        path: dist/OBSPoster.zip
+        name: OBSPoster_MacOSIntel
+        path: dist/OBSPoster_MacOSIntel.zip
 
   release:
     runs-on: ubuntu-latest
-    needs: [windows, macos]
+    needs: [windows, macos-intel]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -73,4 +73,4 @@ jobs:
       with:
         files: |
           OBSPoster_Windows/OBSPoster.exe
-          OBSPoster_MacOS/OBSPoster.zip
+          OBSPoster_MacOSIntel/OBSPoster_MacOSIntel.zip
