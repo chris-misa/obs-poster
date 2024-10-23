@@ -32,7 +32,7 @@ jobs:
         path: dist/OBSPoster.exe
 
   macos:
-    runs-on: macos-latest
+    runs-on: macos-12
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -49,12 +49,14 @@ jobs:
         python -m PyInstaller --name="OBSPoster" --windowed --onefile --icon=icon.ico app.py
     - name: Add a layer of dir
       run: |
-        zip -r OBSPoster.zip dist/OBSPoster.app
+        cd dist
+        zip -r OBSPoster.zip OBSPoster.app
+        cd -
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: OBSPoster_MacOS
-        path: OBSPoster.zip
+        path: dist/OBSPoster.zip
 
   release:
     runs-on: ubuntu-latest
