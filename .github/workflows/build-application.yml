@@ -61,9 +61,11 @@ jobs:
       uses: actions/checkout@v4
     - name: Merge build artifacts
       uses: actions/download-artifact@v4
+    - name: Check files
+      run: ls -R
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
         files: |
-          OBSPoster_Windows
-          OBSPoster_MacOS
+          OBSPoster_Windows/OBSPoster.exe
+          OBSPoster_MacOS/OBSPoster.app
