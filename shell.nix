@@ -34,7 +34,7 @@ mkShell rec {
   LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
 
   shellHook = ''
-    # Emulate venv by telling pip to use local dir for packets
+    # Emulate venv by telling pip to use local dir for packages
     export PIP_PREFIX=$(pwd)/pip_packages
     export PYTHONPATH="$PIP_PREFIX/${python311.sitePackages}:$PYTHONPATH"
     export PATH="$PIP_PREFIX/bin:$PATH"
